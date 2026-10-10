@@ -3,5 +3,5 @@ version: 1.0.0
 main: com.tilkicraft.login.TilkiLoginScreen
 api-version: '1.21'
 depend: [AuthMe]
-softdepend: [CombatGuns]
+softdepend: [TilkiResourcePack, CombatGuns]
 description: AuthMe authentication logo overlay for TilkiCraft

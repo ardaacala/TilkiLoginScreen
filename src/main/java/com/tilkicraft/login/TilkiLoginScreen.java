@@ -51,9 +51,9 @@ public final class TilkiLoginScreen extends JavaPlugin implements Listener {
             authenticated = apiClass.getMethod("isAuthenticated", Player.class);
             unrestricted = apiClass.getMethod("isUnrestricted", Player.class);
             packUrl = getConfig().getString("pack-url", "").trim();
-            if (!packUrl.startsWith("https://")) throw new IllegalArgumentException("Set pack-url to the published HTTPS ZIP URL");
+            if (!SharedPack.active() && !packUrl.startsWith("https://")) throw new IllegalArgumentException("Set pack-url to the published HTTPS ZIP URL");
             hash = HexFormat.of().parseHex(getConfig().getString("pack-sha1", ""));
-            if (hash.length != 20) throw new IllegalArgumentException("pack-sha1 must contain 40 hexadecimal characters");
+            if (!SharedPack.active() && hash.length != 20) throw new IllegalArgumentException("pack-sha1 must contain 40 hexadecimal characters");
         } catch (Exception ex) {
             getLogger().severe("Logo screen disabled: " + ex.getMessage());
             Bukkit.getPluginManager().disablePlugin(this);
@@ -72,7 +72,7 @@ public final class TilkiLoginScreen extends JavaPlugin implements Listener {
     @EventHandler public void quit(PlayerQuitEvent event) { sessions.remove(event.getPlayer().getUniqueId()); }
 
     @EventHandler public void packStatus(PlayerResourcePackStatusEvent event) {
-        if (!PACK_ID.equals(event.getID())) return;
+        if (!SharedPack.matches(PACK_ID,event.getID())) return;
         Session state = sessions.get(event.getPlayer().getUniqueId());
         if (state == null) return;
         state.loaded = event.getStatus() == PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED;
@@ -86,13 +86,14 @@ public final class TilkiLoginScreen extends JavaPlugin implements Listener {
                 Player player = Bukkit.getPlayer(entry.getKey());
                 if (player == null) continue;
                 Session state = entry.getValue();
+                if (SharedPack.active()) state.loaded=SharedPack.loaded(player);
                 boolean loggedIn = (boolean) authenticated.invoke(authApi, player)
                         || (boolean) unrestricted.invoke(authApi, player);
                 if (loggedIn) {
                     clear(player, state);
                     continue;
                 }
-                if (!state.requested && tick >= state.requestAt) {
+                if (!SharedPack.active() && !state.requested && tick >= state.requestAt) {
                     player.addResourcePack(PACK_ID, packUrl, hash,
                             getConfig().getString("pack-prompt"), getConfig().getBoolean("pack-required", true));
                     state.requested = true;
