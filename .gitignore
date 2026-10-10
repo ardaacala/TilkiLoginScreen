@@ -1,0 +1,4 @@
+target/
+dependencies/
+dist/
+*.log

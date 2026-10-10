@@ -1,0 +1,7 @@
+# HTTPS direct ZIP URL. Keep empty until the original logo pack is published.
+pack-url: 'https://github.com/ardaacala/TilkiLoginScreen/releases/download/v1.0.0/TilkiLoginScreen-ResourcePack.zip'
+pack-sha1: '69caa33c81757303248941335c679ad730fa0005'
+pack-required: true
+pack-prompt: 'TilkiCraft giriş ekranı için kaynak paketini kabul et.'
+# CombatGuns requests its pack at tick 30; append this pack afterwards.
+pack-delay-ticks: 60

@@ -1,0 +1,5 @@
+{"providers":[
+  {"type":"bitmap","file":"tilkiloginscreen:font/black.png","height":4096,"ascent":2045,"chars":[""]},
+  {"type":"bitmap","file":"tilkiloginscreen:font/logo.png","height":36,"ascent":15,"chars":[""]},
+  {"type":"space","advances":{"":-2030,"":-2066,"":-1}}
+]}
