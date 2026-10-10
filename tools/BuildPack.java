@@ -16,13 +16,13 @@ class BuildPack {
         Path root = Path.of("resourcepack");
         Path textures = root.resolve("assets/tilkiloginscreen/textures/font");
         Files.createDirectories(textures);
-        BufferedImage logo = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage logo = new BufferedImage(256, 256, BufferedImage.TYPE_INT_ARGB);
         var graphics = logo.createGraphics();
         graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-        double scale = Math.min(512d / source.getWidth(), 512d / source.getHeight());
+        double scale = Math.min(256d / source.getWidth(), 256d / source.getHeight());
         int width = (int)Math.round(source.getWidth() * scale);
         int height = (int)Math.round(source.getHeight() * scale);
-        graphics.drawImage(source, (512-width)/2, (512-height)/2, width, height, null);
+        graphics.drawImage(source, (256-width)/2, (256-height)/2, width, height, null);
         graphics.dispose();
         ImageIO.write(logo, "png", textures.resolve("logo.png").toFile());
         BufferedImage black = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
@@ -32,6 +32,9 @@ class BuildPack {
             {"pack":{"pack_format":46,"description":"TilkiCraft AuthMe login screen - Minecraft 1.21.4"}}
             """);
         write(root.resolve("assets/minecraft/font/default.json"), """
+            {"providers":[{"type":"reference","id":"tilkiloginscreen:login"}]}
+            """);
+        write(root.resolve("assets/minecraft/font/uniform.json"), """
             {"providers":[{"type":"reference","id":"tilkiloginscreen:login"}]}
             """);
         write(root.resolve("assets/tilkiloginscreen/font/login.json"), """

@@ -25,10 +25,13 @@ Resmi AuthMe indirme: https://github.com/AuthMe/AuthMeReloaded/releases/tag/6.0.
 ## Derleme
 
 `mvn package` (Java 21). Paket oluşturma: `java tools/BuildPack.java yol/tilkicraft_logo.png`.
-`tools/BuildPack.java` orijinal logoyu oranını koruyarak 512x512 PNG'ye yerleştirir; tasarımını değiştirmez.
+`tools/BuildPack.java` orijinal logoyu oranını koruyarak 256x256 PNG'ye yerleştirir; tasarımını değiştirmez.
 
 ## Doğrulama
 
 JAR derlemesi, resmi AuthMe 6.0.1 Spigot JAR'ındaki API imzaları, ZIP/PNG/font dosyaları ve yayımlanan ZIP'in SHA1'i kontrol edildi. Canlı Minecraft istemcisinde ekran yerleşimi ve sunucudaki diğer pluginlerle birlikte davranış henüz denenmedi.
 
 Sunucu kontrolü: ilk kayıt, yanlış şifre, başarılı giriş, çıkış/giriş, AuthMe oturumla otomatik giriş, kaynak paketi reddetme, farklı GUI ölçekleri ve giriş sonrasında CombatGuns crosshair/scope/model görüntüsü.
+
+## 1.0.1 düzeltmesi
+Logo dokusu Minecraft 256x256 font atlasına sığacak şekilde düzeltildi. Unicode font desteği eklendi. Eski resmi paket URL/SHA1 ayarı JAR güncellendiğinde otomatik taşınır. Canlı istemcide yeniden kontrol gereklidir.

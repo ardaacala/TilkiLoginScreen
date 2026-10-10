@@ -36,6 +36,12 @@ public final class TilkiLoginScreen extends JavaPlugin implements Listener {
 
     @Override public void onEnable() {
         saveDefaultConfig();
+        String oldUrl = getConfig().getString("pack-url", "");
+        if (oldUrl.equals("https://github.com/ardaacala/TilkiLoginScreen/releases/download/v1.0.0/TilkiLoginScreen-ResourcePack.zip")) {
+            getConfig().set("pack-url", "https://github.com/ardaacala/TilkiLoginScreen/releases/download/v1.0.1/TilkiLoginScreen-ResourcePack.zip");
+            getConfig().set("pack-sha1", "148670db4f58e1a097edc70acac98715fdfc721d");
+            saveConfig();
+        }
         try {
             var auth = Bukkit.getPluginManager().getPlugin("AuthMe");
             if (auth == null || !auth.isEnabled()) throw new IllegalStateException("AuthMe is not enabled");
