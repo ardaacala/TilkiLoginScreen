@@ -18,6 +18,7 @@ public final class TilkiLoginScreen extends JavaPlugin implements Listener {
     private static final UUID PACK_ID = UUID.fromString("0c0dadbb-d83d-43d0-9505-6a0f668c6acc");
     // Total advance 36; black quad and logo share their horizontal center.
     private static final String OVERLAY = "\uE902\uE900\uE904\uE903\uE901\uE904";
+    private static final String OVERLAY_TITLE = "{\"text\":\"" + OVERLAY + "\",\"shadow_color\":0}";
     private final Map<UUID, Session> sessions = new HashMap<>();
     private Object authApi;
     private Method authenticated;
@@ -31,6 +32,7 @@ public final class TilkiLoginScreen extends JavaPlugin implements Listener {
         boolean requested;
         boolean loaded;
         boolean visible;
+        long lastTitleAt;
         Session(long requestAt) { this.requestAt = requestAt; }
     }
 
@@ -98,9 +100,12 @@ public final class TilkiLoginScreen extends JavaPlugin implements Listener {
                             getConfig().getString("pack-prompt"), getConfig().getBoolean("pack-required", true));
                     state.requested = true;
                 }
-                if (state.loaded) {
-                    player.sendTitle(OVERLAY, "", 0, 15, 0);
+                if (state.loaded && (!state.visible || tick - state.lastTitleAt >= 1000)) {
+                    player.sendTitle("", "", 0, 1200, 0);
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                            "minecraft:title " + player.getName() + " title " + OVERLAY_TITLE);
                     state.visible = true;
+                    state.lastTitleAt = tick;
                 }
             }
         } catch (Exception ex) {
