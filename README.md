@@ -5,7 +5,7 @@ Spigot 1.21.4 / Java 21 için TilkiCraft logolu AuthMe giriş ekranı.
 ## Kurulum
 
 1. Sunucuyu durdur.
-2. `dependencies/AuthMe-6.0.1-Spigot-1.21.jar` ve `dist/TilkiLoginScreen-1.0.0.jar` dosyalarını sunucunun `plugins` klasörüne kopyala. AuthMe zaten varsa ikinci bir kopya ekleme.
+2. `dependencies/AuthMe-6.0.1-Spigot-1.21.jar` ve `target/TilkiLoginScreen-1.0.2.jar` dosyalarını sunucunun `plugins` klasörüne kopyala. AuthMe zaten varsa ikinci bir kopya ekleme.
 3. Sunucuyu başlat. Kaynak paketi URL ve SHA1 bilgileri JAR içinde hazırdır; ZIP'i sunucu klasörüne atman gerekmez.
 4. Oyuncu kaynak paketini kabul eder; paket yüklendikten sonra siyah zemin üzerinde logo görünür. Sohbetten `/register parola parola` veya `/login parola` kullanılır. Komutların kesin biçimini AuthMe mesajları belirler.
 5. AuthMe girişin başarılı olduğunu bildirdiğinde logo en geç yaklaşık 250 ms içinde kaldırılır. Hatalı şifre ekranı kapatmaz. Oturum açma zorunluluğu ve korumalar AuthMe tarafından yönetilir.
@@ -35,3 +35,7 @@ Sunucu kontrolü: ilk kayıt, yanlış şifre, başarılı giriş, çıkış/gir
 
 ## 1.0.1 düzeltmesi
 Logo dokusu Minecraft 256x256 font atlasına sığacak şekilde düzeltildi. Unicode font desteği eklendi. Eski resmi paket URL/SHA1 ayarı JAR güncellendiğinde otomatik taşınır. Canlı istemcide yeniden kontrol gereklidir.
+
+## 1.0.2 düzeltmesi
+
+Giriş logosunun sağ altında görünen kaymış kopyalar, Minecraft'ın başlık metnine uyguladığı gölgeden kaynaklanır. Başlık bileşeni `shadow_color: 0` ile gönderilir. Bu düzeltme JAR içindedir; kaynak paketi v1.0.1 olarak kalır. Eski JAR yerine `target/TilkiLoginScreen-1.0.2.jar` kurulmalı ve sunucu yeniden başlatılmalıdır. Canlı istemcide son görünüm kontrol edilmelidir.

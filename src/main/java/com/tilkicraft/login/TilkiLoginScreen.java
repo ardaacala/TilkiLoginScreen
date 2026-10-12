@@ -18,6 +18,8 @@ public final class TilkiLoginScreen extends JavaPlugin implements Listener {
     private static final UUID PACK_ID = UUID.fromString("0c0dadbb-d83d-43d0-9505-6a0f668c6acc");
     // Total advance 36; black quad and logo share their horizontal center.
     private static final String OVERLAY = "\uE902\uE900\uE904\uE903\uE901\uE904";
+    // Minecraft 1.21.4 title text casts a second, offset copy of bitmap glyphs unless
+    // its component explicitly sets a transparent shadow color.
     private static final String OVERLAY_TITLE = "{\"text\":\"" + OVERLAY + "\",\"shadow_color\":0}";
     private final Map<UUID, Session> sessions = new HashMap<>();
     private Object authApi;

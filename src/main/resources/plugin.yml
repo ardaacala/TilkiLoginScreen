@@ -1,5 +1,5 @@
 name: TilkiLoginScreen
-version: 1.0.0
+version: 1.0.2
 main: com.tilkicraft.login.TilkiLoginScreen
 api-version: '1.21'
 depend: [AuthMe]
